@@ -25,7 +25,7 @@ const CallWindow = () => {
 
   const playOpenAITTS = async (text) => {
     try {
-      const voiceOptions = ['nova', 'shimmer', 'onyx', 'fable', 'echo']; // OpenAI TTS voices
+      const voiceOptions = ['nova', 'shimmer', 'onyx', 'fable', 'echo'];
       const voice = selectedVoice || voiceOptions[Math.floor(Math.random() * voiceOptions.length)];
       setSelectedVoice(voice);
 
@@ -97,7 +97,7 @@ const CallWindow = () => {
         isBotSpeakingRef.current = false;
       }
     },
-    [isCallActive, selectedVoice, playOpenAITTS]
+    [isCallActive, playOpenAITTS] // ✅ Removed selectedVoice
   );
 
   useEffect(() => {
@@ -182,7 +182,7 @@ const CallWindow = () => {
     setTranscript([]);
     setChatHistory([initialSystemPrompt.current]);
     setFeedback('');
-    setSelectedVoice(null); // reset voice for new call
+    setSelectedVoice(null);
 
     const totalWait = Math.random() * 3000 + 2000;
     const ringSound = new Audio('/sounds/ring.mp3');
